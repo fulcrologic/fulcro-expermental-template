@@ -14,4 +14,10 @@
 
 (defn new-database [] (d/create-conn schema))
 
-(defstate conn :start (new-database))
+(defstate conn
+  :start
+  (let [c (new-database)]
+    (d/transact c [{:account/id       1
+                    :account/name     "Bob"
+                    :account/password "letmein"}])
+    c))
