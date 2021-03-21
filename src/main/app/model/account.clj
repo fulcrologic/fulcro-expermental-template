@@ -18,6 +18,7 @@
 
 (defresolver current-account-resolver [{:keys [db] :as env} _]
   {::pc/output [{:current-account [:account/id]}]}
+  (Thread/sleep 1000)
   {:current-account {:account/id 1}})
 
 (defmutation save-account [env account]
